@@ -1,0 +1,22 @@
+{
+  "name": "process-spawner",
+  "version": "0.1.0",
+  "description": "Spawn a process, with some common control options.",
+  "main": "process-spawner",
+  "scripts": {
+    "build": "tsc --project .",
+    "clean": "rm -f process-spawner.js process-spawner.tests.js",
+    "test": "mocha ./process-spawner.tests.js"
+  },
+  "author": "Peter Snider",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "3.1.2",
+    "request": "2.78.0",
+    "typescript": "2.0.6",
+    "typings": "1.5.0"
+  },
+  "typings": "process-spawner.d.ts"
+}

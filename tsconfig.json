@@ -1,0 +1,39 @@
+{
+    "version": "2.0.0",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "removeComments": false,
+        "noLib": false,
+        "sourceMap": true,
+        "outDir": "."
+    },
+    "formatCodeOptions": {
+        "indentSize": 4,
+        "tabSize": 4,
+        "newLineCharacter": "\n",
+        "convertTabsToSpaces": true,
+        "insertSpaceAfterCommaDelimiter": true,
+        "insertSpaceAfterSemicolonInForStatements": true,
+        "insertSpaceBeforeAndAfterBinaryOperators": true,
+        "insertSpaceAfterKeywordsInControlFlowStatements": true,
+        "insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
+        "insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": false,
+        "placeOpenBraceOnNewLineForFunctions": false,
+        "placeOpenBraceOnNewLineForControlBlocks": false
+    },
+    "filesGlob": [
+        "*.ts",
+        "typings/index.d.ts"
+    ],
+    "files": [
+        "process-spawner.ts",
+        "process-spawner.d.ts",
+        "process-spawner.tests.ts",
+        "typings/index.d.ts"
+    ],
+    "exclude": [],
+    "atom": {
+        "rewriteTsconfig": true
+    }
+}
