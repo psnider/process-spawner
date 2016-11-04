@@ -2,19 +2,6 @@
 var child_process = require('child_process');
 var STARTUP_TIME_DEFAULT = 1000;
 var SHUTDOWN_TIME_DEFAULT = 100;
-/*
-** @example
-var A_NODE_PROCESS_FILENAME = 't.js'
-var ps = require('generated/tools/tools/ts/process-spawner.js')
-var proc = new ps.ProcessSpawner({program: 'node', args: [A_NODE_PROCESS_FILENAME]})
-var ready_promise = proc.start()
-ready_promise.then((completion_promise) => {
-    return completion_promise
-}).then((code) => {
-    console.log(`completion resolved with: ${code}`)
-})
-proc.stop()
-*/
 var ProcessSpawner = (function () {
     function ProcessSpawner(options) {
         this.options = options;

@@ -12,11 +12,18 @@ export interface Options {
     shutdown_time?: number   // defaults to SHUTDOWN_TIME_DEFAULT
 }
 
+
+export interface StartPromises {
+    ready: Promise<void>
+    completed: Promise<number>
+}
+
+
 export class ProcessSpawner {
     options: Options
     env: {}
 
     constructor(options: Options)
-    start(): Promise<number>
+    start(): StartPromises
     stop(): Promise<void>
 }

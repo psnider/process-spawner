@@ -14,23 +14,16 @@ export interface Options {
     shutdown_time?: number   // defaults to SHUTDOWN_TIME_DEFAULT
 }
 
+
+export interface StartPromises {
+    ready: Promise<void>
+    completed: Promise<number>
+}
+
 const STARTUP_TIME_DEFAULT = 1000
 const SHUTDOWN_TIME_DEFAULT = 100
 
 
-/* 
-** @example
-var A_NODE_PROCESS_FILENAME = 't.js'
-var ps = require('generated/tools/tools/ts/process-spawner.js')
-var proc = new ps.ProcessSpawner({program: 'node', args: [A_NODE_PROCESS_FILENAME]})
-var ready_promise = proc.start()
-ready_promise.then((completion_promise) => {
-    return completion_promise
-}).then((code) => {
-    console.log(`completion resolved with: ${code}`)    
-})
-proc.stop()
-*/
 export class ProcessSpawner {
 
     options: Options
@@ -60,7 +53,7 @@ export class ProcessSpawner {
 
     // return a Promise that resolves when the spawned process has initialized, and is ready for use. 
     // It resolves with another Promise that resolves when the spawned process completes successfully, or rejects when it completes with an error. 
-    start(): {ready: Promise<void>, completed: Promise<number>} {
+    start(): StartPromises {
         var completed = new Promise<number>((resolve, reject) => {
             this.spawned_proc = child_process.spawn(this.options.program, this.options.args, {env: this.env})
             this.spawned_proc.stdout.on('data', (data) => {
