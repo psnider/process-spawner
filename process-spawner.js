@@ -1,9 +1,9 @@
 "use strict";
-var child_process = require('child_process');
-var STARTUP_TIME_DEFAULT = 1000;
-var SHUTDOWN_TIME_DEFAULT = 100;
-var ProcessSpawner = (function () {
-    function ProcessSpawner(options) {
+const child_process = require('child_process');
+const STARTUP_TIME_DEFAULT = 1000;
+const SHUTDOWN_TIME_DEFAULT = 100;
+class ProcessSpawner {
+    constructor(options) {
         this.options = options;
         if (this.options.startup_time == null)
             this.options.startup_time = STARTUP_TIME_DEFAULT;
@@ -23,11 +23,10 @@ var ProcessSpawner = (function () {
     }
     // return a Promise that resolves when the spawned process has initialized, and is ready for use. 
     // It resolves with another Promise that resolves when the spawned process completes successfully, or rejects when it completes with an error. 
-    ProcessSpawner.prototype.start = function () {
-        var _this = this;
-        var completed = new Promise(function (resolve, reject) {
-            _this.spawned_proc = child_process.spawn(_this.options.program, _this.options.args, { env: _this.env });
-            _this.spawned_proc.stdout.on('data', function (data) {
+    start() {
+        var completed = new Promise((resolve, reject) => {
+            this.spawned_proc = child_process.spawn(this.options.program, this.options.args, { env: this.env });
+            this.spawned_proc.stdout.on('data', (data) => {
                 // if (this.options.save_log) {
                 //     fs.write(this.log_file, data, (error) => {
                 //         if (error) {
@@ -35,12 +34,12 @@ var ProcessSpawner = (function () {
                 //         }
                 //     })
                 // } else {
-                if (!_this.options.disable_console_logging) {
+                if (!this.options.disable_console_logging) {
                     console.log(data.toString());
                 }
                 // }
             });
-            _this.spawned_proc.stderr.on('data', function (data) {
+            this.spawned_proc.stderr.on('data', (data) => {
                 // if (this.options.save_log) {
                 //     fs.write(this.log_file, data, (error) => {
                 //         if (error) {
@@ -48,12 +47,12 @@ var ProcessSpawner = (function () {
                 //         }
                 //     })
                 // } else {
-                if (!_this.options.disable_console_logging) {
+                if (!this.options.disable_console_logging) {
                     console.error(data.toString());
                 }
                 // }
             });
-            var defaultCloseHandler = function (exit_code) {
+            var defaultCloseHandler = (exit_code) => {
                 //console.log(`${this.options.program} exited with exit_code=${exit_code}`)
                 // if (!this.options.disable_console_logging) {
                 //     console.log(`${this.options.program} exited with code=${code}`)
@@ -62,32 +61,30 @@ var ProcessSpawner = (function () {
                     resolve(exit_code);
                 }
                 else {
-                    var error = new Error("exited with exit_code=" + exit_code);
+                    let error = new Error(`exited with exit_code=${exit_code}`);
                     error['exit_code'] = exit_code;
                     reject(error);
                 }
             };
-            _this.spawned_proc.on('close', _this.options.closeHandler || defaultCloseHandler);
+            this.spawned_proc.on('close', this.options.closeHandler || defaultCloseHandler);
         });
-        var ready = new Promise(function (resolve, reject) {
+        var ready = new Promise((resolve, reject) => {
             // give server a chance to start up
-            setTimeout(function () {
+            setTimeout(() => {
                 resolve();
-            }, _this.options.startup_time);
+            }, this.options.startup_time);
         });
-        return { ready: ready, completed: completed };
-    };
-    ProcessSpawner.prototype.stop = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            _this.spawned_proc.kill('SIGTERM');
+        return { ready, completed };
+    }
+    stop() {
+        return new Promise((resolve, reject) => {
+            this.spawned_proc.kill('SIGTERM');
             // give server a chance to shut down
-            setTimeout(function () {
+            setTimeout(() => {
                 resolve();
-            }, _this.options.shutdown_time);
+            }, this.options.shutdown_time);
         });
-    };
-    return ProcessSpawner;
-}());
+    }
+}
 exports.ProcessSpawner = ProcessSpawner;
 //# sourceMappingURL=process-spawner.js.map

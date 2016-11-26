@@ -7,7 +7,7 @@
         "noLib": false,
         "sourceMap": true,
         "outDir": ".",
-        "types": ["node"]
+        "types": ["chai", "mocha", "node", "request"]
     },
     "formatCodeOptions": {
         "indentSize": 4,
@@ -24,8 +24,8 @@
         "placeOpenBraceOnNewLineForControlBlocks": false
     },
     "files": [
-        "process-spawner.ts",
-        "process-spawner.d.ts"
+        "process-spawner.d.ts",
+        "process-spawner.tests.ts"
     ],
     "exclude": []
 }

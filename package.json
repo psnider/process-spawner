@@ -1,22 +1,27 @@
 {
   "name": "process-spawner",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Spawn a process, with some common control options.",
   "main": "process-spawner",
   "scripts": {
-    "build": "tsc --project .",
-    "clean": "rm -f process-spawner.js process-spawner.tests.js",
-    "test": "mocha ./process-spawner.tests.js"
+    "build": "bin/build-and-install-in-node_modules.sh",
+    "clean": "rm -f process-spawner.*js process-spawner.*map node_modules/@sabbatical/process-spawner/*",
+    "test-only": "mocha ./process-spawner.tests.js",
+    "test": "npm run clean && npm run build && npm run test-only"
   },
   "author": "Peter Snider",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
+    "@types/chai": "3.4.34",
+    "@types/mocha": "2.2.33",
+    "@types/node": "6.0.51",
+    "@types/request": "0.0.34",
     "chai": "3.5.0",
     "mocha": "3.1.2",
-    "request": "2.78.0",
-    "typescript": "2.0.6",
-    "typings": "1.5.0"
+    "request": "2.79.0",
+    "typescript": "2.0.10"
   },
   "typings": "process-spawner.d.ts"
 }
