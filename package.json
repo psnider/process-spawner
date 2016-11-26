@@ -1,6 +1,6 @@
 {
-  "name": "process-spawner",
-  "version": "0.2.0",
+  "name": "@sabbatical/process-spawner",
+  "version": "0.2.1",
   "description": "Spawn a process, with some common control options.",
   "main": "process-spawner",
   "scripts": {
