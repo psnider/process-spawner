@@ -99,6 +99,7 @@ export class ProcessSpawner {
         })
         var ready = new Promise<void>((resolve, reject) => {
             // give server a chance to start up
+            // TODO: [replace arbitrary setTimeout() with semantic tests](https://github.com/psnider/process-spawner/issues/1)
             setTimeout(() => {
                 resolve()
             }, this.options.startup_time)
@@ -111,6 +112,7 @@ export class ProcessSpawner {
         return new Promise<void>((resolve, reject) => {
             this.spawned_proc.kill('SIGTERM')
             // give server a chance to shut down
+            // TODO: [replace arbitrary setTimeout() with semantic tests](https://github.com/psnider/process-spawner/issues/1)
             setTimeout(() => {
                 resolve()
             }, this.options.shutdown_time)

@@ -23,5 +23,9 @@
     "request": "2.79.0",
     "typescript": "2.0.10"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:psnider/process-spawner.git"
+  },
   "typings": "process-spawner.d.ts"
 }
