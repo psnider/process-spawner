@@ -1,6 +1,6 @@
 {
   "name": "@sabbatical/process-spawner",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Spawn a process, with some common control options.",
   "main": "process-spawner",
   "scripts": {
@@ -11,8 +11,7 @@
   },
   "author": "Peter Snider",
   "license": "MIT",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/chai": "3.4.34",
     "@types/mocha": "2.2.33",
@@ -21,7 +20,7 @@
     "chai": "3.5.0",
     "mocha": "3.1.2",
     "request": "2.79.0",
-    "typescript": "2.0.10"
+    "typescript": "2.2.1"
   },
   "repository": {
     "type": "git",
